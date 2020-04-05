@@ -7,9 +7,11 @@ searched cities will add buttons on the left that will pull up the
 previously searched cities weather. 
 
 # Latest Commit  
--Added new responsive containers for city weather summary and 5 day forecast  
+-Added a list of variables to store API response data  
+-Added function to make 2 API calls in series and update response data variables  
 
 # Previous Commits  
+-Added new responsive containers for city weather summary and 5 day forecast  
 -Created function to add buttons of previously searched cities  
 -Linked FontAwesome for search icon  
 -Created Weather Dashboard Header  
