@@ -7,9 +7,10 @@ searched cities will add buttons on the left that will pull up the
 previously searched cities weather. 
 
 # Latest Commit  
--Created function to add buttons of previously searched cities  
+-Added new responsive containers for city weather summary and 5 day forecast  
 
 # Previous Commits  
+-Created function to add buttons of previously searched cities  
 -Linked FontAwesome for search icon  
 -Created Weather Dashboard Header  
 -Created Search for a City Form  
