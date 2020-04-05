@@ -1,0 +1,35 @@
+html,body {
+    height: 100%;
+}
+
+.dashboard-header {
+    height: 80px;
+}
+
+.dashboard-header h1 {
+    line-height: 72px;
+    vertical-align: middle;
+}
+
+#city-search {
+    width: 65%;
+    margin-left: 10%;
+    margin-bottom: 5%;
+}
+
+.city-search-button {
+    height: 50%;
+    width: 20%;
+}
+
+.city-search-title {
+    margin-top: 5px;
+    font-weight: bold;
+    margin-left: 5%;
+}
+
+.btn-light {
+    margin-left: 5%;
+    width: 95%;
+    border: 1px solid lightgray;
+}
