@@ -1,2 +1,10 @@
-# Weather-Dashboard
-Retrieve weather data for cities using OpenWeather API
+# Weather-Dashboard  
+Retrieve weather data for cities using OpenWeather API.  
+Search for a city, and dashboard will display the temp, humidity,  
+wind speed, and UV index (with severity) for the current day.  
+Additionally, the 5 day forecast will display.  A list of previously  
+searched cities will add buttons on the left that will pull up the  
+previously searched cities weather. 
+
+# Latest Commit  
+-Added files and Bootstrap/jQuery links  
