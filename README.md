@@ -7,10 +7,11 @@ searched cities will add buttons on the left that will pull up the
 previously searched cities weather. 
 
 # Latest Commit  
+-Created function to add buttons of previously searched cities  
+
+# Previous Commits  
 -Linked FontAwesome for search icon  
 -Created Weather Dashboard Header  
 -Created Search for a City Form  
 -Added placeholder buttons and styling for previously searched cities  
-
-# Previous Commits  
 -Added files and Bootstrap/jQuery links  
