@@ -9,15 +9,16 @@
     <title>Weather Dashboard</title>
 </head>
 <body>
-    <div class="container-fluid bg-dark text-white justify-content-center">
+    <header class="container-fluid bg-dark text-white justify-content-center">
         <div class="row justify-content-center dashboard-header">
             <h1>Weather Dashboard</h1>
         </div>
-    </div>
+    </header>
 
-    <div class="container-fluid h-100">
+    <main class="container-fluid h-100">
         <div class="row h-100">
 
+            <!-- Left hand column container to Search for a City where city buttons will be added -->
             <div class="col-3 bg-light">
                 <form>
                     <label for="city-search" class="city-search-title">Search for a City</label>
@@ -27,11 +28,13 @@
                     </div>
                 </form> 
 
+                <!-- New buttons will be created here from script.js -->
                 <div id="add-buttons-here">
                 </div>
                 
             </div>
 
+            <!-- Right hand column container that displays city information -->
             <div class="col-9" id="weather-information" style="display: none">
                 <div class="row">
                     <div class="container city-display">
@@ -50,11 +53,12 @@
                     </div>
                 </div>
 
+                <!-- New forecast divs will be created here by script.js -->
                 <div class="row forecast-row">
                 </div>
             </div>
         </div>
-    </div>
+    </main>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

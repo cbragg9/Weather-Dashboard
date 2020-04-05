@@ -1,5 +1,6 @@
 $(document).ready(function(){ 
 
+    // Global declarations to avoid scope issues
     var cityName = "";
     var todayDate = moment().format('l');
     var addDay = 1;
@@ -31,6 +32,15 @@ $(document).ready(function(){
         $(".forecast-row").empty();
         callAPI();
     })
+
+    // Event handler with delegation on new city buttons to call API
+    $(document).on("click", ".city-button", function() {
+        cityName = $(this).data("city");
+        queryWeatherURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=d0ac70bd4ea6ba698001a45b4fec69e2";
+        queryForecastURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=d0ac70bd4ea6ba698001a45b4fec69e2";
+        $(".forecast-row").empty();
+        callAPI();
+    });
 
     // Make CurrentWeather API call and use latitude and longitude to make UV Index API call, update variables with response data
     function callAPI() {
