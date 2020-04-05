@@ -1,9 +1,11 @@
 $(document).ready(function(){ 
 
     var cityName = "";
-    var todayDate = moment().format('L');
+    var todayDate = moment().format('l');
+    var addDay = 1;
     var queryWeatherURL = "";
     var queryUVURL = "";
+    var queryForecastURL = "";
     var latitude = "";
     var longitude = "";
     var cityTemp = "";
@@ -11,6 +13,8 @@ $(document).ready(function(){
     var cityWind = "";
     var cityUV = "";
     var weatherIconID = "";
+    var forecastIconID = "";
+    var forecastObject = "";
 
     // When search button is clicked, append a new button with a name matching the form textarea
     $(".city-search-button").on("click", function() {
@@ -18,11 +22,13 @@ $(document).ready(function(){
         cityName = $("#city-search").val();
         
         var newCityButton = $("<button>");
-        newCityButton.addClass("btn btn-light");
+        newCityButton.addClass("btn btn-light city-button");
         newCityButton.text(cityName);
         newCityButton.attr("data-city", cityName);
         $("#add-buttons-here").append(newCityButton);
         queryWeatherURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=d0ac70bd4ea6ba698001a45b4fec69e2";
+        queryForecastURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=d0ac70bd4ea6ba698001a45b4fec69e2";
+        $(".forecast-row").empty();
         callAPI();
     })
 
@@ -32,7 +38,6 @@ $(document).ready(function(){
             url: queryWeatherURL,
             method: "GET"
         }).then(function(response) {
-            console.log(response);
             weatherIconID = response.weather[0].icon;
             latitude = response.coord.lat;
             longitude = response.coord.lon;
@@ -41,17 +46,53 @@ $(document).ready(function(){
             cityWind = response.wind.speed;
             queryUVURL = "http://api.openweathermap.org/data/2.5/uvi?appid=d0ac70bd4ea6ba698001a45b4fec69e2&lat=" + latitude + "&lon=" + longitude;
     
+            // Make UV Index API Call, save UV index value; 
             $.ajax({
                 url: queryUVURL,
                 method: "GET"
             }).then(function(response) {
                 cityUV = response.value;
-                updateCityDisplay();
-                displayWeather();
+
+                // Make 5 Day Forecast API Call, save as Object, run functions to create and display HTML weather elements
+                $.ajax({
+                    url: queryForecastURL,
+                    method: "GET"
+                }).then(function(response) {
+                    forecastObject = response;
+                    displayForecast();
+                    updateCityDisplay();
+                    displayWeather();
+                });
+
             });
     
         });
     }
+
+    // For 5 days, create a new div that displays the date (calculated by moment), the weather icon image, and weather info from saved API object
+    function displayForecast() {
+        for (var i = 0; i <= 32; i = i + 8) {
+
+            // Calculate the forecast dates 
+            var forecastDate = moment().add(addDay, 'days').format('l');
+            addDay++;
+
+            // Create a new img tag and set source to the API call icon shortcut
+            forecastIconID = forecastObject.list[i].weather[0].icon;
+            var forecastImage = $("<img>");
+            forecastImage.attr("src", "http://openweathermap.org/img/wn/" + forecastIconID + ".png");
+
+            // Create a new DIV and append all weather info
+            var newForecastDiv = $("<div>");
+            newForecastDiv.addClass("forecast-box col-5 col-md-2 bg-primary text-white");
+            newForecastDiv.append("<h6>" + forecastDate + "</h6>");
+            newForecastDiv.append(forecastImage);
+            var forecastTemp = ((forecastObject.list[i].main.temp-273.15)*1.8)+32;
+            newForecastDiv.append("<p>Temp: " + Number(forecastTemp).toFixed(1) + " °F</p>");
+            newForecastDiv.append("<p>Humidity: " + forecastObject.list[i].main.humidity + "%</p>");
+            $(".forecast-row").append(newForecastDiv);
+        }
+    } 
 
     // Update the HTML elements in the city displays and run displayUV function
     function updateCityDisplay() {
@@ -78,7 +119,6 @@ $(document).ready(function(){
         } else {
             $("#city-uv").css("background-color", "green");
         }
-
     }
 
     // Display weather information HTML elements 

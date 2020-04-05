@@ -7,12 +7,15 @@ searched cities will add buttons on the left that will pull up the
 previously searched cities weather. 
 
 # Latest Commit  
+-Removed HTML elements from index that will be created by Javascript  
+-Created new API call for 5 day forecast values  
+-Created new function to create and display 5 divs for the 5-Day Forecast  
+
+# Previous Commits  
 -Set city weather display to none by default  
 -Created function to update the HTML elements in the city displays and run displayUV function  
 -Created function to update the UV background depending on UV index scale  
 -Created function to display weather information HTML elements  
-
-# Previous Commits  
 -Added a list of variables to store API response data  
 -Added function to make 2 API calls in series and update response data variables  
 -Added new responsive containers for city weather summary and 5 day forecast  
