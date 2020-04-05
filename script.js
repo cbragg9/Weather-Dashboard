@@ -17,30 +17,28 @@ $(document).ready(function(){
     var forecastIconID = "";
     var forecastObject = "";
 
-    // When search button is clicked, append a new button with a name matching the form textarea
-    $(".city-search-button").on("click", function() {
+    // When any button is clicked, begin to call API's
+    $(document).on("click", ".btn", function() {
         event.preventDefault();
-        cityName = $("#city-search").val();
         
-        var newCityButton = $("<button>");
-        newCityButton.addClass("btn btn-light city-button");
-        newCityButton.text(cityName);
-        newCityButton.attr("data-city", cityName);
-        $("#add-buttons-here").append(newCityButton);
+        // If the button has a data type of city, skip creating a new city button
+        if ($(this).data("city")) {
+            cityName = $(this).data("city");
+        } else {
+            cityName = $("#city-search").val();
+            var newCityButton = $("<button>");
+            newCityButton.addClass("btn btn-light city-button");
+            newCityButton.text(cityName);
+            newCityButton.attr("data-city", cityName);
+            $("#add-buttons-here").append(newCityButton);
+        }
+        
         queryWeatherURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=d0ac70bd4ea6ba698001a45b4fec69e2";
         queryForecastURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=d0ac70bd4ea6ba698001a45b4fec69e2";
         $(".forecast-row").empty();
         callAPI();
     })
 
-    // Event handler with delegation on new city buttons to call API
-    $(document).on("click", ".city-button", function() {
-        cityName = $(this).data("city");
-        queryWeatherURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=d0ac70bd4ea6ba698001a45b4fec69e2";
-        queryForecastURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=d0ac70bd4ea6ba698001a45b4fec69e2";
-        $(".forecast-row").empty();
-        callAPI();
-    });
 
     // Make CurrentWeather API call and use latitude and longitude to make UV Index API call, update variables with response data
     function callAPI() {

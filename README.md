@@ -7,10 +7,11 @@ searched cities will add buttons on the left that will pull up the
 previously searched cities weather. 
 
 # Latest Commit  
--Added event handler for buttons created after cities are searched  
--Additional descriptive comments  
+-Reformatted on click into a single event handler for all buttons with if statement to improve DRY  
 
 # Previous Commits  
+-Added event handler for buttons created after cities are searched  
+-Additional descriptive comments  
 -Removed HTML elements from index that will be created by Javascript  
 -Created new API call for 5 day forecast values  
 -Created new function to create and display 5 divs for the 5-Day Forecast  
