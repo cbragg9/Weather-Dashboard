@@ -91,7 +91,7 @@ $(document).ready(function(){
             cityTemp = ((response.main.temp-273.15)*1.8)+32;
             cityHumidity = response.main.humidity;
             cityWind = response.wind.speed;
-            queryUVURL = "http://api.openweathermap.org/data/2.5/uvi?appid=d0ac70bd4ea6ba698001a45b4fec69e2&lat=" + latitude + "&lon=" + longitude;
+            queryUVURL = "https://api.openweathermap.org/data/2.5/uvi?appid=d0ac70bd4ea6ba698001a45b4fec69e2&lat=" + latitude + "&lon=" + longitude;
     
             // Make UV Index API Call, save UV index value; 
             $.ajax({
@@ -127,7 +127,7 @@ $(document).ready(function(){
             // Create a new img tag and set source to the API call icon shortcut
             forecastIconID = forecastObject.list[i].weather[0].icon;
             var forecastImage = $("<img>");
-            forecastImage.attr("src", "http://openweathermap.org/img/wn/" + forecastIconID + ".png");
+            forecastImage.attr("src", "https://openweathermap.org/img/wn/" + forecastIconID + ".png");
 
             // Create a new DIV and append all weather info
             var newForecastDiv = $("<div>");
@@ -144,7 +144,7 @@ $(document).ready(function(){
     // Update the HTML elements in the city displays and run displayUV function
     function updateCityDisplay() {
         var iconImage = $("<img>");
-        iconImage.attr("src", "http://openweathermap.org/img/wn/" + weatherIconID + ".png")
+        iconImage.attr("src", "https://openweathermap.org/img/wn/" + weatherIconID + ".png")
         $("#city-name").text(cityName + " (" + todayDate + ")");
         $("#city-name").append(iconImage);
         $("#city-temp").text("Temperature: " + Number(cityTemp).toFixed(1) + " °F");
