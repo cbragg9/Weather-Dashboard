@@ -9,9 +9,11 @@ saved in Local Storage. If Local Storage contains a city, it will
 be displayed on launch.  
 
 # Latest Commit  
--Store the searched city names in local storage, call API on launch if a stored name exists  
+-If local storage exists, ask user if they want to display last city weather  
+-If user selects no, ask user if they want to clear the local storage  
 
 # Previous Commits  
+-Store the searched city names in local storage, call API on launch if a stored name exists  
 -Return an alert if user submits a search with an empty field  
 -Moved script to create new buttons into its own function  
 -If city cannot be found, remove the new city button and return an alert  

@@ -18,13 +18,25 @@ $(document).ready(function(){
     var forecastObject = "";
     var storedCity = localStorage.getItem("city");
 
-    // If local storage contains a value, call the API with that value
+    // If local storage contains a value, ask user if they want to call the API with that value.
     if (storedCity != null) {
-        cityName = storedCity;
-        queryWeatherURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=d0ac70bd4ea6ba698001a45b4fec69e2";
-        queryForecastURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=d0ac70bd4ea6ba698001a45b4fec69e2";
-        $(".forecast-row").empty();
-        callAPI();
+        var displayLast = confirm("Do you want to display the last searched city?");
+
+        if (displayLast === true) {
+            cityName = storedCity;
+            queryWeatherURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=d0ac70bd4ea6ba698001a45b4fec69e2";
+            queryForecastURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=d0ac70bd4ea6ba698001a45b4fec69e2";
+            $(".forecast-row").empty();
+            callAPI();
+
+          // If user does not want to display last city, ask user if they want to clear the local storage
+        } else {
+            var clearStorage = confirm("Do you want to delete storage?");
+
+            if (clearStorage === true) {
+                localStorage.clear();
+            }
+        }
     }
 
     // When any button is clicked, begin to call API's
