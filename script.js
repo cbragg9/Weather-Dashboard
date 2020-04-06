@@ -16,22 +16,34 @@ $(document).ready(function(){
     var weatherIconID = "";
     var forecastIconID = "";
     var forecastObject = "";
+    var storedCity = localStorage.getItem("city");
+
+    // If local storage contains a value, call the API with that value
+    if (storedCity != null) {
+        cityName = storedCity;
+        queryWeatherURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=d0ac70bd4ea6ba698001a45b4fec69e2";
+        queryForecastURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=d0ac70bd4ea6ba698001a45b4fec69e2";
+        $(".forecast-row").empty();
+        callAPI();
+    }
 
     // When any button is clicked, begin to call API's
     $(document).on("click", ".btn", function() {
         event.preventDefault();
         
-        // If the button has a data type of city, cityName API call set to button data value
+        // If the button has a data type of city, cityName API call set to button data value, store city name into local storage
         if ($(this).data("city")) {
             cityName = $(this).data("city");
+            localStorage.setItem("city", cityName);
 
           // Return an alert if you click submit with an empty search box
         } else if ($(this).hasClass("city-search-button") && $("#city-search").val() === "") {
             return alert("Please enter a city name.");
 
-          // cityName API call is the value in the search box, create a new city button
+          // cityName API call is the value in the search box, create a new city button, store city name into local storage
         } else {
             cityName = $("#city-search").val();
+            localStorage.setItem("city", cityName);
             newCityButton();
         }
         

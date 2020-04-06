@@ -4,14 +4,17 @@ Search for a city, and dashboard will display the temp, humidity,
 wind speed, and UV index (with severity) for the current day.  
 Additionally, the 5 day forecast will display.  A list of previously  
 searched cities will add buttons on the left that will pull up the  
-previously searched cities weather. 
+previously searched cities weather. The last searched city will be  
+saved in Local Storage. If Local Storage contains a city, it will  
+be displayed on launch.  
 
 # Latest Commit  
+-Store the searched city names in local storage, call API on launch if a stored name exists  
+
+# Previous Commits  
 -Return an alert if user submits a search with an empty field  
 -Moved script to create new buttons into its own function  
 -If city cannot be found, remove the new city button and return an alert  
-
-# Previous Commits  
 -Reformatted on click into a single event handler for all buttons with if statement to improve DRY  
 -Added event handler for buttons created after cities are searched  
 -Additional descriptive comments  
