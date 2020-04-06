@@ -7,9 +7,12 @@ searched cities will add buttons on the left that will pull up the
 previously searched cities weather. 
 
 # Latest Commit  
--Reformatted on click into a single event handler for all buttons with if statement to improve DRY  
+-Return an alert if user submits a search with an empty field  
+-Moved script to create new buttons into its own function  
+-If city cannot be found, remove the new city button and return an alert  
 
 # Previous Commits  
+-Reformatted on click into a single event handler for all buttons with if statement to improve DRY  
 -Added event handler for buttons created after cities are searched  
 -Additional descriptive comments  
 -Removed HTML elements from index that will be created by Javascript  

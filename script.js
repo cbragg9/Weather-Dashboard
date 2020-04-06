@@ -21,16 +21,18 @@ $(document).ready(function(){
     $(document).on("click", ".btn", function() {
         event.preventDefault();
         
-        // If the button has a data type of city, skip creating a new city button
+        // If the button has a data type of city, cityName API call set to button data value
         if ($(this).data("city")) {
             cityName = $(this).data("city");
+
+          // Return an alert if you click submit with an empty search box
+        } else if ($(this).hasClass("city-search-button") && $("#city-search").val() === "") {
+            return alert("Please enter a city name.");
+
+          // cityName API call is the value in the search box, create a new city button
         } else {
             cityName = $("#city-search").val();
-            var newCityButton = $("<button>");
-            newCityButton.addClass("btn btn-light city-button");
-            newCityButton.text(cityName);
-            newCityButton.attr("data-city", cityName);
-            $("#add-buttons-here").append(newCityButton);
+            newCityButton();
         }
         
         queryWeatherURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=d0ac70bd4ea6ba698001a45b4fec69e2";
@@ -39,12 +41,25 @@ $(document).ready(function(){
         callAPI();
     })
 
+    function newCityButton() {
+        var newCityButton = $("<button>");
+        newCityButton.addClass("btn btn-light city-button " + cityName);
+        newCityButton.text(cityName);
+        newCityButton.attr("data-city", cityName);
+        $("#add-buttons-here").append(newCityButton);
+    }
 
     // Make CurrentWeather API call and use latitude and longitude to make UV Index API call, update variables with response data
     function callAPI() {
         $.ajax({
             url: queryWeatherURL,
-            method: "GET"
+            method: "GET",
+
+            // If city cannot be found, remove the new city button and return an alert
+            error: function() {
+                $("." + cityName).remove();
+                return alert("Cannot find city.");
+            }
         }).then(function(response) {
             weatherIconID = response.weather[0].icon;
             latitude = response.coord.lat;
