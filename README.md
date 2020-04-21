@@ -1,4 +1,7 @@
 # Weather-Dashboard  
+
+Deployed Link: https://cbragg9.github.io/Weather-Dashboard/  
+
 Retrieve weather data for cities using OpenWeather API.  
 Search for a city, and dashboard will display the temp, humidity,  
 wind speed, and UV index (with severity) for the current day.  
